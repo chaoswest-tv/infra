@@ -1,0 +1,54 @@
+---
+- name: grafana signing key
+  become: yes
+  apt_key:
+    url: "https://packages.grafana.com/gpg.key"
+    state: present
+
+- name: grafana repository
+  become: yes
+  apt_repository:
+    repo: "deb https://packages.grafana.com/oss/deb stable main"
+    state: present
+    update_cache: yes
+
+- name: install packages
+  become: yes
+  package:
+    name: grafana
+
+- name: compile configuration file
+  become: yes
+  notify: restart-grafana
+  template:
+    src: grafana.ini.j2
+    dest: /etc/grafana/grafana.ini
+
+- name: compile provisioned datasources
+  become: yes
+  notify: restart-grafana
+  template:
+    src: datasources/prometheus.yaml.j2
+    dest: /etc/grafana/provisioning/datasources/prometheus.yaml
+
+- name: start and enable grafana
+  become: yes
+  service:
+    name: grafana-server
+    state: started
+    enabled: yes
+
+- name: compile vhost configuration file
+  become: yes
+  notify: reload-nginx
+  template:
+    src: vhost.conf.j2
+    dest: /etc/nginx/sites-available/grafana
+
+- name: enable vhost configuration
+  become: yes
+  notify: reload-nginx
+  file:
+    state: link
+    src: /etc/nginx/sites-available/grafana
+    dest: /etc/nginx/sites-enabled/grafana

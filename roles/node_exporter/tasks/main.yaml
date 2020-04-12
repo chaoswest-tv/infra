@@ -1,0 +1,45 @@
+---
+- name: packages
+  become: yes
+  package:
+    name:
+      - moreutils # required for newer prometheus-node-exporter
+
+- name: newer prometheus-node-exporter deb pkg
+  become: yes
+  apt:
+    deb: "{{ prometheus_node_exporter_deb }}"
+
+- name: template prometheus-node-exporter file
+  become: yes
+  notify: restart-prometheus-node-exporter
+  template:
+    src: prometheus-node-exporter.j2
+    dest: /etc/default/prometheus-node-exporter
+
+- name: enable and start services
+  become: yes
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  loop:
+    - prometheus-node-exporter
+
+- name: open firewall for prometheus servers (v4)
+  become: yes
+  ufw:
+    rule: allow
+    port: '9100'
+    proto: tcp
+    src: "{{ hostvars[item]['ansible_default_ipv4']['address'] }}"
+  loop: "{{ groups['prometheus'] }}"
+
+- name: open firewall for prometheus servers (v6)
+  become: yes
+  ufw:
+    rule: allow
+    port: '9100'
+    proto: tcp
+    src: "{{ hostvars[item]['ansible_default_ipv6']['address'] }}"
+  loop: "{{ groups['prometheus'] }}"

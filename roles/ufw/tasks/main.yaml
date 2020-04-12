@@ -1,0 +1,17 @@
+---
+- name: install packages
+  become: yes
+  package:
+    name: ufw
+
+- name: always allow ssh access
+  become: yes
+  ufw:
+    rule: allow
+    name: OpenSSH
+
+- name: enable ufw
+  become: yes
+  ufw:
+    state: enabled
+    default: reject

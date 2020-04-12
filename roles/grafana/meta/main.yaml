@@ -1,0 +1,5 @@
+dependencies:
+  - nginx
+  - role: acme_cert
+    acme_name: "{{ grafana_domain }}"
+    acme_domains: ["{{ grafana_domain }}"]

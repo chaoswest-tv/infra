@@ -1,0 +1,16 @@
+global:
+  scrape_interval:     5s # YOLO!
+  evaluation_interval: 15s
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets: ['localhost:9093']
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+  - job_name: node
+    file_sd_configs:
+      - files:
+        - /etc/prometheus/file_sd_configs/node.*.yaml

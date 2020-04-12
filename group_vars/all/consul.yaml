@@ -1,0 +1,2 @@
+consul_encrypt_key: "{{ consul_encrypt_key_vault }}"
+consul_domain: "consul.chaoswest.tv"

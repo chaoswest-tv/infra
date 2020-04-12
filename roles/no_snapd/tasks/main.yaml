@@ -1,0 +1,8 @@
+---
+# why? because fuck snaps, that's why.
+- name: purge package
+  become: yes
+  apt:
+    name: snapd
+    state: absent
+    purge: yes

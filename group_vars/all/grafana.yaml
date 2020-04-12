@@ -1,0 +1,7 @@
+grafana_domain: "grafana.chaoswest.tv"
+grafana_admin_user: "admin"
+grafana_admin_password: "{{ grafana_admin_password_vault }}"
+grafana_secret_key: "{{ grafana_secret_key_vault }}"
+grafana_github_client_id: "{{ grafana_github_client_id_vault }}"
+grafana_github_client_secret: "{{ grafana_github_client_secret_vault }}"
+grafana_github_allowed_organizations: "chaoswest-tv"

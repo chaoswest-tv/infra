@@ -1,0 +1,19 @@
+---
+- hosts: all
+  name: gather facts from every host
+  tasks: [ ]
+
+- hosts: all
+  roles:
+    - no_snapd
+    - ufw
+    - acme_cert
+    - node_exporter
+
+- hosts: grafana
+  roles:
+    - grafana
+
+- hosts: prometheus
+  roles:
+    - prometheus

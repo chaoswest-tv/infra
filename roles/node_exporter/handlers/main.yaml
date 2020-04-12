@@ -1,0 +1,6 @@
+---
+- name: restart-prometheus-node-exporter
+  become: yes
+  service:
+    name: prometheus-node-exporter
+    state: restarted
