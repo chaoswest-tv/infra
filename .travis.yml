@@ -4,7 +4,8 @@ python:
 install:
 - pip install ansible==2.9
 script:
-- ansible -i hosts tower.chaoswest.tv -a "echo 'success'"
+- ansible -i hosts all -m ping
+- ansible-playbook -i hosts base.yaml
 env:
   global:
   - ANSIBLE_HOST_KEY_CHECKING='false'
