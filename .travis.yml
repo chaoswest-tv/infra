@@ -6,9 +6,10 @@ install:
 script:
 - ansible tower.chaoswest.tv -a "echo 'success'"
 env:
-- ANSIBLE_HOST_KEY_CHECKING='false'
-- ANSIBLE_VAULT_PASSWORD_FILE='vault-password'
-- ANSIBLE_REMOTE_USER='root'
+  global:
+  - ANSIBLE_HOST_KEY_CHECKING='false'
+  - ANSIBLE_VAULT_PASSWORD_FILE='vault-password'
+  - ANSIBLE_REMOTE_USER='root'
 before_install:
 - openssl aes-256-cbc -K $encrypted_e8b9f665f844_key -iv $encrypted_e8b9f665f844_iv
   -in ssh.enc -out ssh -d
