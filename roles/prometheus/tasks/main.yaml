@@ -8,6 +8,7 @@
 - name: compile prometheus confguration
   become: yes
   notify: restart-prometheus
+  no_log: yes
   template:
     src: prometheus.yaml.j2
     dest: /etc/prometheus/prometheus.yml
@@ -24,6 +25,7 @@
 - name: compile file_sd_configs
   become: yes
   # no reload needed, prometheus picks up changes via inotify
+  no_log: yes
   template:
     src: "file_sd_config_{{ item }}.yaml.j2"
     dest: "/etc/prometheus/file_sd_configs/{{ item }}.ansible.yaml"

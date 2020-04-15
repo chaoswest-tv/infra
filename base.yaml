@@ -10,6 +10,10 @@
     - acme_cert
     - node_exporter
 
+- hosts: rtmp
+  roles:
+    - docker
+
 - hosts: grafana
   roles:
     - grafana

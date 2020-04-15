@@ -1,9 +1,8 @@
-[all]
-tower.chaoswest.tv
-dev-rtmp-k9.chaoswest.tv
-prd-rtmp-b4.chaoswest.tv
-prd-rtmp-j2.chaoswest.tv
 [prometheus]
 tower.chaoswest.tv
 [grafana]
 tower.chaoswest.tv
+[rtmp]
+dev-rtmp-k9.chaoswest.tv
+prd-rtmp-b4.chaoswest.tv
+prd-rtmp-j2.chaoswest.tv

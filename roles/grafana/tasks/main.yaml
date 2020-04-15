@@ -20,6 +20,7 @@
 - name: compile configuration file
   become: yes
   notify: restart-grafana
+  no_log: yes
   template:
     src: grafana.ini.j2
     dest: /etc/grafana/grafana.ini
@@ -27,6 +28,7 @@
 - name: compile provisioned datasources
   become: yes
   notify: restart-grafana
+  no_log: yes
   template:
     src: datasources/prometheus.yaml.j2
     dest: /etc/grafana/provisioning/datasources/prometheus.yaml
