@@ -6,6 +6,7 @@ install:
 script:
 - ansible -i hosts all -m ping
 - ansible-playbook -i hosts base.yaml
+if: branch = master
 env:
   global:
   - ANSIBLE_HOST_KEY_CHECKING='false'
