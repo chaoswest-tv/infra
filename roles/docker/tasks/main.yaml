@@ -37,7 +37,7 @@
 - name: download docker-compose binary from github releases
   get_url:
     url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64"
-    checksum: "sha256:https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64.sha256"
+    #checksum: "sha256:https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64.sha256"
     dest: /usr/local/bin/docker-compose
     validate_certs: yes
     owner: root
