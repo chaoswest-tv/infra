@@ -1,0 +1,5 @@
+---
+- name: update package lists
+  become: yes
+  apt:
+    update_cache: yes
