@@ -2,7 +2,6 @@
 tower.chaoswest.tv
 [grafana]
 tower.chaoswest.tv
-[rtmp]
-dev-rtmp-k9.chaoswest.tv
-prd-rtmp-b4.chaoswest.tv
-prd-rtmp-j2.chaoswest.tv
+[ingest]
+ingest-fsn.chaoswest.tv
+ingest-nbg.chaoswest.tv
