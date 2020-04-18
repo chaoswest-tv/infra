@@ -1,0 +1,38 @@
+---
+- name: compile origin server configuration
+  become: yes
+  no_log: yes
+  template:
+    src: srs.origin.conf.j2
+    dest: /etc/srs.origin.conf
+
+- name: container
+  become: yes
+  docker_container:
+    name: srs_origin
+    image: ossrs/srs:3
+    pull: yes
+    state: started
+    restart_policy: unless-stopped
+    network_mode: host
+    keep_volumes: no
+    volumes:
+      - "/etc/srs.origin.conf:/usr/local/srs/conf/srs.conf:ro"
+      - "/mnt/hls:/mnt/hls:rw"
+
+- name: open rtmp ingest firewall port
+  become: yes
+  ufw:
+    rule: allow
+    proto: tcp
+    port: "{{ srs_origin_rtmp_port }}"
+
+- name: open srs api firewall port to srs origin cluster (v4)
+  become: yes
+  ufw:
+    rule: allow
+    proto: tcp
+    port: "{{ srs_origin_api_port }}"
+    src: "{{ hostvars[item]['ansible_default_ipv4']['address'] }}"
+    comment: "SRS origin API access from {{ item }}"
+  loop: "{{ groups['srs_origin'] }}"

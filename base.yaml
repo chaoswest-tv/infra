@@ -10,9 +10,17 @@
     - acme_cert
     - node_exporter
 
-- hosts: rtmp
+- hosts: srs_origin
   roles:
-    - docker
+    - srs_origin
+  tags:
+    - srs
+
+- hosts: srs_edge
+  roles:
+    - srs_edge
+  tags:
+    - srs
 
 - hosts: grafana
   roles:

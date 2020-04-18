@@ -1,0 +1,13 @@
+listen              {{ srs_edge_rtmp_port }};
+max_connections     1000;
+srs_log_tank        console;
+pid                 ./objs/srs.pid;
+utc_time            on;
+inotify_auto_reload on;
+
+vhost __defaultVhost__ {
+    cluster {
+        mode remote;
+        origin {% for item in groups['srs_origin'] %} {{ hostvars[item]['ansible_default_ipv4']['address'] }}:{{ srs_origin_rtmp_port }}{% endfor %};
+    }
+}

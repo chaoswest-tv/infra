@@ -1,0 +1,33 @@
+listen              {{ srs_origin_rtmp_port }};
+max_connections     1000;
+srs_log_tank        console;
+pid                 ./objs/srs.pid;
+utc_time            on;
+inotify_auto_reload on;
+
+http_api {
+    enabled         on;
+    listen          {{ srs_origin_api_port }};
+}
+
+vhost __defaultVhost__ {
+    security {
+      enabled on;
+      allow publish all;
+      allow play 127.0.0.1;
+      {% for item in groups['srs_edge'] %}
+      allow play {{ hostvars[item]['ansible_default_ipv4']['address'] }};
+      {% endfor %}
+    }
+    cluster {
+        mode local;
+        origin_cluster  on;
+        coworkers{% for origin in groups['srs_origin'] %} {{ origin }}:{{ srs_origin_api_port }}{% endfor %};
+    }
+    hls {
+        enabled         on;
+        hls_path        /mnt/hls;
+        hls_fragment    1;
+        hls_window      360;
+    }
+}

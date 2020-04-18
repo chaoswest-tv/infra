@@ -43,3 +43,9 @@
     owner: root
     group: root
     mode: 0755
+
+- name: install python-docker library
+  become: yes
+  pip:
+    name: docker
+    state: present

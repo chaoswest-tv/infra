@@ -3,3 +3,13 @@
   become: yes
   apt:
     update_cache: yes
+
+- name: install common packages
+  become: yes
+  package:
+    name:
+      # debugging stuff
+      - vim
+      - tmux
+      # helpers
+      - python3-pip
