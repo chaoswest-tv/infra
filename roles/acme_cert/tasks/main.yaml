@@ -1,6 +1,6 @@
 ---
 - name: get acme certificate
   become: yes
-  command: "certbot certonly -i /etc/letsencrypt/cli.ini --cert-name {{ acme_name }}{% for domain in acme_domains %} -d {{domain}}{% endfor %}"
+  command: "certbot certonly -i /etc/letsencrypt/cli.ini --cert-name {{ acme_name }}{% for domain in acme_domains %} -d {{ domain }}{% endfor %}"
   args:
     creates: "/etc/letsencrypt/live/{{ acme_name | regex_replace('^\\*.') }}"
