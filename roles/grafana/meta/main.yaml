@@ -1,5 +1,24 @@
+---
+galaxy_info:
+  role_name: grafana
+  author: Jan Koppe <post@jankoppe.de>
+  description: Install grafana and prometheus
+  company: CHAOSWEST TV
+  min_ansible_version: 2.6
+  platforms:
+    - name: Debian
+      versions:
+        - sid
+        - buster
+        - jessie
+    - name: Ubuntu
+      versions:
+        - eoan
+        - bionic
+        - xenial
+  license: MIT
 dependencies:
-  - nginx
+  - role: nginx
   - role: acme_cert
     acme_name: "{{ grafana_domain }}"
     acme_domains: ["{{ grafana_domain }}"]
