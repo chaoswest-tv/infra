@@ -18,7 +18,6 @@
     keep_volumes: no
     volumes:
       - "/etc/srs.origin.conf:/usr/local/srs/conf/srs.conf:ro"
-      - "/mnt/hls:/mnt/hls:rw"
 
 - name: open rtmp ingest firewall port
   become: yes

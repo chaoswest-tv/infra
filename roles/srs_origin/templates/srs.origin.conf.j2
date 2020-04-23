@@ -24,10 +24,4 @@ vhost __defaultVhost__ {
         origin_cluster  on;
         coworkers{% for origin in groups['srs_origin'] %} {{ origin }}:{{ srs_origin_api_port }}{% endfor %};
     }
-    hls {
-        enabled         on;
-        hls_path        /mnt/hls;
-        hls_fragment    1;
-        hls_window      360;
-    }
 }
