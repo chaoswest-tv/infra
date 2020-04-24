@@ -1,9 +1,0 @@
-prometheus_node_exporter_deb: "https://launchpad.net/ubuntu/+source/prometheus-node-exporter/0.18.1+ds-2/+build/18742425/+files/prometheus-node-exporter_0.18.1+ds-2_amd64.deb"
-prometheus_prometheus_debs:
-  - "http://launchpadlibrarian.net/420388981/fonts-glyphicons-halflings_1.009~3.4.1+dfsg-1_all.deb"
-  - "http://launchpadlibrarian.net/446388766/libjs-popper.js_1.14.6+ds2-2_all.deb"
-  - "http://launchpadlibrarian.net/454809072/libjs-bootstrap4_4.4.1+dfsg1-1_all.deb"
-  - "http://launchpadlibrarian.net/434271596/libjs-moment-timezone_0.5.25+dfsg1-3_all.deb"
-  - "http://launchpadlibrarian.net/429967486/init-system-helpers_1.57_all.deb"
-  - "http://launchpadlibrarian.net/464644244/prometheus_2.15.2+ds-2_amd64.deb"
-  - "http://launchpadlibrarian.net/464633073/prometheus-alertmanager_0.20.0+ds-1_amd64.deb"

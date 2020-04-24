@@ -1,14 +1,7 @@
----
-- name: packages
-  become: yes
-  package:
-    name:
-      - moreutils # required for newer prometheus-node-exporter
-
-- name: newer prometheus-node-exporter deb pkg
+- name: install package
   become: yes
   apt:
-    deb: "{{ prometheus_node_exporter_deb }}"
+    name: prometheus-node-exporter
 
 - name: template prometheus-node-exporter file
   become: yes

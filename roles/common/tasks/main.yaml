@@ -8,8 +8,9 @@
   become: yes
   package:
     name:
-      # debugging stuff
+      # utils
       - vim
       - tmux
+      - ffmpeg
       # helpers
       - python3-pip

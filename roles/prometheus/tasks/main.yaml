@@ -1,9 +1,8 @@
 ---
-- name: newer prometheus deb pkgs
+- name: install package
   become: yes
-  apt:
-    deb: "{{ item }}"
-  loop: "{{ prometheus_prometheus_debs }}"
+  package:
+    name: prometheus
 
 - name: compile prometheus confguration
   become: yes
