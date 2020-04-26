@@ -59,6 +59,15 @@ http {
       location / {
           return 301 https://$host$request_uri;
       }
+
+      # use docker dns for resolve
+      resolver 127.0.0.11 valid=5s;
+
+      # allow this specific request via http because srs does not support https callback
+      location /rtmp/callback/srs {
+        set $upstream app:80;
+        proxy_pass http://$upstream;
+      }
     }
 
     server {

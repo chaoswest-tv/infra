@@ -1,3 +1,6 @@
 srs_edge_rtmp_port: 1936
 srs_origin_rtmp_port: 1935
 srs_origin_api_port: 9090
+
+srs_http_callback_enable: yes
+srs_http_callback_url: "https://portier.chaoswest.tv/rtmp/callback/srs"

@@ -19,6 +19,11 @@ vhost __defaultVhost__ {
       allow play {{ hostvars[item]['ansible_default_ipv4']['address'] }};
       {% endfor %}
     }
+    http_hooks {
+      enabled {% if srs_http_callback_enable %}on{% else %}off{% endif%};
+      on_publish {{ srs_http_callback_url }};
+      on_unpublish {{ srs_http_callback_url }};
+    }
     cluster {
         mode local;
         origin_cluster  on;
