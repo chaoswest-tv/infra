@@ -1,0 +1,86 @@
+---
+- name: prepare data dir
+  become: yes
+  file:
+    state: directory
+    path: /opt/portier
+
+- name: compile nginx configuration
+  become: yes
+  template:
+    src: nginx.conf.j2
+    dest: /opt/portier/nginx.conf
+  register: compile_nginx
+
+- name: run portier stack
+  docker_compose:
+    pull: yes
+    remove_orphans: yes
+    project_name: portier
+    definition: &compose
+      version: "2"
+      services:
+        nginx:
+          image: nginx:alpine
+          ports:
+            - 443:443
+            - 80:80
+          depends_on:
+            - app
+          volumes:
+            - "/opt/portier/nginx.conf:/etc/nginx/nginx.conf:ro"
+            - "/etc/letsencrypt:/etc/letsencrypt:ro"
+        app:
+          image: "quay.io/cwtv/portier:{{ portier_tag | default('latest') }}"
+          ports:
+            - 127.0.0.1:8080:80
+          depends_on:
+            - postgres
+            - redis
+          environment:
+            DEBUG: 0
+            SECRET_KEY: "{{ portier_secret_key }}"
+            SQL_ENGINE: django.db.backends.postgresql
+            SQL_USER: portier
+            SQL_PASSWORD: portier
+            SQL_DATABASE: portier
+            SQL_HOST: postgres
+            SQL_PORT: 5432
+            REDIS_HOST: redis
+            REDIS_PORT: 6379
+        redis:
+          image: redis:5-alpine
+        postgres:
+          image: postgres:11.7-alpine
+          volumes:
+            - "/opt/portier/postgresql/data:/var/lib/postgresql/data"
+          environment:
+            POSTGRES_PASSWORD: "portier"
+            POSTGRES_USER: "portier"
+            POSTGRES_DB: "portier"
+
+- name: restart nginx after config change
+  become: yes
+  docker_compose:
+    project_name: portier
+    services:
+      - nginx
+    restarted: yes
+    definition:
+      <<: *compose
+  # not doing this via handler because yaml anchoring only works within a file.
+  when: compile_nginx.changed
+
+- name: allow http access
+  become: yes
+  ufw:
+    rule: allow
+    proto: tcp
+    port: 80
+
+- name: allow https access
+  become: yes
+  ufw:
+    rule: allow
+    proto: tcp
+    port: 443
