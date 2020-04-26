@@ -1,1 +1,2 @@
 portier_secret_key: "{{ portier_secret_key_vault }}"
+portier_tag: "0.3.1"
