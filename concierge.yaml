@@ -1,0 +1,6 @@
+---
+- hosts: concierge
+  roles:
+    - concierge
+  tags:
+    - concierge

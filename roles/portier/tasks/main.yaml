@@ -48,6 +48,10 @@
             SQL_PORT: 5432
             REDIS_HOST: redis
             REDIS_PORT: 6379
+            EMAIL_FROM: "{{ portier_email_from }}"
+            EMAIL_HOST: "{{ portier_email_host }}"
+            EMAIL_HOST_USER: "{{ portier_email_host_user }}"
+            EMAIL_HOST_PASSWORD: "{{ portier_email_host_password }}"
         redis:
           image: redis:5-alpine
         postgres:

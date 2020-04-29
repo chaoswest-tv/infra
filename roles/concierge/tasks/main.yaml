@@ -1,0 +1,14 @@
+---
+- name: run concierge stack
+  docker_compose:
+    pull: yes
+    remove_orphans: yes
+    project_name: concierge
+    definition:
+      version: "2"
+      services:
+        app:
+          image: "quay.io/cwtv/concierge:{{ concierge_tag | default('latest') }}"
+          environment:
+            DEBUG: 0
+            CONCIERGE_IDENTITY: "{{ concierge_identity }}"
