@@ -6,8 +6,6 @@ galaxy_info:
   company: CHAOSWEST TV
   min_ansible_version: 2.4
   platforms:
-    - name: Archlinux
-      versions: all
     - name: Debian
       versions:
         - sid
