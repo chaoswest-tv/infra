@@ -3,7 +3,7 @@ galaxy_info:
   role_name: no_snapd
   author: Jan Koppe <post@jankoppe.de>
   description: remove snapd
-  company: CHAOSWEST TV
+  company: Chaoswest TV
   min_ansible_version: 2.4
   platforms:
     - name: Debian

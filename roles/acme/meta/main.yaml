@@ -3,7 +3,7 @@ galaxy_info:
   role_name: acme
   author: Jan Koppe <post@jankoppe.de>
   description: Install certbot and setup certbot cronjob
-  company: CHAOSWEST TV
+  company: Chaoswest TV
   min_ansible_version: 2.4
   platforms:
     - name: Debian
