@@ -1,10 +1,10 @@
 ---
 galaxy_info:
-  role_name: grafana
+  role_name: common
   author: Jan Koppe <post@jankoppe.de>
-  description: Install grafana
+  description: Install common packages
   company: Chaoswest TV
-  min_ansible_version: 2.6
+  min_ansible_version: 2.4
   platforms:
     - name: Debian
       versions:
@@ -18,8 +18,4 @@ galaxy_info:
         - bionic
         - xenial
   license: MIT
-dependencies:
-  - role: nginx
-  - role: acme_cert
-    acme_name: "{{ grafana_domain }}"
-    acme_domains: ["{{ grafana_domain }}"]
+dependencies: []
