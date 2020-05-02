@@ -30,6 +30,7 @@
     dest: "/etc/prometheus/file_sd_configs/{{ item }}.ansible.yaml"
   loop:
     - node
+    - srs
 
 - name: start and enable prometheus
   become: yes

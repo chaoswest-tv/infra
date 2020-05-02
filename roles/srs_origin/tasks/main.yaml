@@ -19,6 +19,20 @@
     volumes:
       - "/etc/srs.origin.conf:/usr/local/srs/conf/srs.conf:ro"
 
+- name: srs prometheus exporter container
+  become: yes
+  docker_container:
+    name: srs_exporter
+    image: quay.io/cwtv/srs-exporter:latest
+    pull: yes
+    state: started
+    restart_policy: unless-stopped
+    network_mode: host
+    keep_volumes: no
+    env:
+      SRS_API_PORT: "{{ srs_origin_api_port|quote }}"
+      LISTEN_PORT: "{{ srs_exporter_port|quote }}"
+
 - name: open rtmp ingest firewall port
   become: yes
   ufw:
@@ -35,3 +49,23 @@
     src: "{{ hostvars[item]['ansible_default_ipv4']['address'] }}"
     comment: "SRS origin API access from {{ item }}"
   loop: "{{ groups['srs_origin'] }}"
+
+- name: open srs exporter firewall port to prometheus (v4)
+  become: yes
+  ufw:
+    rule: allow
+    proto: tcp
+    port: "{{ srs_exporter_port }}"
+    src: "{{ hostvars[item]['ansible_default_ipv4']['address'] }}"
+    comment: "SRS exporter access from {{ item }}"
+  loop: "{{ groups['prometheus'] }}"
+
+- name: open srs exporter firewall port to prometheus (v6)
+  become: yes
+  ufw:
+    rule: allow
+    proto: tcp
+    port: "{{ srs_exporter_port }}"
+    src: "{{ hostvars[item]['ansible_default_ipv6']['address'] }}"
+    comment: "SRS exporter access from {{ item }}"
+  loop: "{{ groups['prometheus'] }}"

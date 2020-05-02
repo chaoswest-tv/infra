@@ -1,0 +1,4 @@
+- targets:
+{% for host in groups['srs_origin'] %}
+  - {{ host }}:{{ srs_exporter_port }}
+{% endfor %}
