@@ -12,3 +12,7 @@ ingest-nbg.chaoswest.tv
 portier.chaoswest.tv
 [concierge]
 portier.chaoswest.tv
+[cdn_origin]
+cdn-origin-nbg.chaoswest.tv
+[cdn_edge]
+cdn-edge-nbg1.chaoswest.tv

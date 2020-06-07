@@ -1,0 +1,22 @@
+---
+galaxy_info:
+  role_name: cdn_origin
+  author: Jan Koppe <post@jankoppe.de>
+  description: configure cdn origin nginx
+  company: Chaoswest TV
+  min_ansible_version: 2.4
+  platforms:
+    - name: Debian
+      versions:
+        - sid
+        - buster
+        - jessie
+    - name: Ubuntu
+      versions:
+        - focal
+        - eoan
+        - bionic
+        - xenial
+  license: MIT
+dependencies:
+  - role: nginx

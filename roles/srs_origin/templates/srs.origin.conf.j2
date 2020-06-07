@@ -27,6 +27,6 @@ vhost __defaultVhost__ {
     cluster {
         mode local;
         origin_cluster  on;
-        coworkers{% for origin in groups['srs_origin'] %} {{ origin }}:{{ srs_origin_api_port }}{% endfor %};
+        coworkers{% for origin in groups['srs_origin'] %} {{ hostvars[origin]['ansible_default_ipv4']['address'] }}:{{ srs_origin_api_port }}{% endfor %};
     }
 }
