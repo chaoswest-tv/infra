@@ -26,7 +26,7 @@
     port: '9100'
     proto: tcp
     src: "{{ item }}"
-  loop: "{{ prometheus_ips }}"
+  loop: "{{ prometheus_ips_v4 }}"
 
 - name: open firewall for prometheus servers (v6)
   become: yes
@@ -35,4 +35,4 @@
     port: '9100'
     proto: tcp
     src: "{{ item }}"
-  loop: "{{ prometheus_ips }}"
+  loop: "{{ prometheus_ips_v6 }}"

@@ -56,9 +56,9 @@
     rule: allow
     proto: tcp
     port: "{{ srs_exporter_port }}"
-    src: "{{ hostvars[item]['ansible_default_ipv4']['address'] }}"
+    src: "{{ item }}"
     comment: "SRS exporter access from {{ item }}"
-  loop: "{{ groups['prometheus'] }}"
+  loop: "{{ prometheus_ips_v4 }}"
 
 - name: open srs exporter firewall port to prometheus (v6)
   become: yes
@@ -66,6 +66,6 @@
     rule: allow
     proto: tcp
     port: "{{ srs_exporter_port }}"
-    src: "{{ hostvars[item]['ansible_default_ipv6']['address'] }}"
+    src: "{{ item }}"
     comment: "SRS exporter access from {{ item }}"
-  loop: "{{ groups['prometheus'] }}"
+  loop: "{{ prometheus_ips_v6 }}"
