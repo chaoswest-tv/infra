@@ -1,4 +1,6 @@
 common_contact_email: "post@chaoswest.tv"
 
-prometheus_ips:
+prometheus_ips_v4:
   - 213.240.133.41
+prometheus_ips_v6:
+  - 2a01:170:28:23:213:240:133:41
