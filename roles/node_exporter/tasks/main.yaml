@@ -25,8 +25,8 @@
     rule: allow
     port: '9100'
     proto: tcp
-    src: "{{ hostvars[item]['ansible_default_ipv4']['address'] }}"
-  loop: "{{ groups['prometheus'] }}"
+    src: "{{ item }}"
+  loop: "{{ prometheus_ips }}"
 
 - name: open firewall for prometheus servers (v6)
   become: yes
@@ -34,5 +34,5 @@
     rule: allow
     port: '9100'
     proto: tcp
-    src: "{{ hostvars[item]['ansible_default_ipv6']['address'] }}"
-  loop: "{{ groups['prometheus'] }}"
+    src: "{{ item }}"
+  loop: "{{ prometheus_ips }}"
