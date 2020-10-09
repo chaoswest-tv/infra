@@ -1,7 +1,7 @@
 [prometheus]
-tower.chaoswest.tv
+#tower.chaoswest.tv
 [grafana]
-tower.chaoswest.tv
+#tower.chaoswest.tv
 [srs_origin]
 ingest-fsn.chaoswest.tv
 ingest-nbg.chaoswest.tv
@@ -13,6 +13,6 @@ portier.chaoswest.tv
 [concierge]
 portier.chaoswest.tv
 [cdn_origin]
-cdn-origin-nbg.chaoswest.tv
+#cdn-origin-nbg.chaoswest.tv
 [cdn_edge]
-cdn-edge-nbg1.chaoswest.tv
+#cdn-edge-nbg1.chaoswest.tv

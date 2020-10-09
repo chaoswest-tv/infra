@@ -21,17 +21,3 @@
     - srs_edge
   tags:
     - srs
-
-- hosts: cdn_origin
-  roles:
-    - cdn_origin
-  tags:
-    - cdn
-
-- hosts: grafana
-  roles:
-    - grafana
-
-- hosts: prometheus
-  roles:
-    - prometheus
