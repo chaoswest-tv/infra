@@ -1,10 +1,17 @@
 ---
-- name: install certbot
+- name: install packages
   become: yes
   package:
     name:
       - certbot
-      - python3-certbot-dns-rfc2136
+      - python3-pip
+
+- name: install hetzner dns plugin
+  become: yes
+  pip:
+    executable: pip3
+    name: certbot-dns-hetzner
+
 
 - name: compile certbot config
   become: yes
@@ -16,12 +23,12 @@
     group: root
     mode: 0600
 
-- name: compile rfc2136 config
+- name: compile hetzner config
   become: yes
   no_log: yes
   template:
-    src: rfc2136.ini.j2
-    dest: /etc/letsencrypt/rfc2136.ini
+    src: hetzner.ini.j2
+    dest: /etc/letsencrypt/hetzner.ini
     owner: root
     group: root
     mode: 0600
