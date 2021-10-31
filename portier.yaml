@@ -1,6 +1,0 @@
----
-- hosts: portier
-  roles:
-    - portier
-  tags:
-    - portier

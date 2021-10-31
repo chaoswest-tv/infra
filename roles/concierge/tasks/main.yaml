@@ -6,9 +6,21 @@
     project_name: concierge
     definition:
       version: "2"
+      volumes:
+        ffmpeg_progress:
       services:
-        app:
-          image: "quay.io/cwtv/concierge:{{ concierge_tag | default('latest') }}"
+        concierge:
+          image: "ghcr.io/chaoswest-tv/concierge:{{ concierge_tag | default('main') }}"
+          restart: unless-stopped
           environment:
             DEBUG: 0
             CONCIERGE_IDENTITY: "{{ concierge_identity }}"
+          volumes:
+            - ffmpeg_progress:/tmp/ffmpeg
+        ffmpeg-exporter:
+          image: "ghcr.io/jankoppe/ffmpeg-exporter:{{ ffmpeg_exporter_tag | default('main') }}"
+          restart: unless-stopped
+          volumes:
+            - ffmpeg_progress:/tmp/ffmpeg
+          ports:
+            - 2342:2342

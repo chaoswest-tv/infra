@@ -10,14 +10,14 @@
   become: yes
   docker_container:
     name: srs_origin
-    image: ossrs/srs:3
+    image: ossrs/srs:4
     pull: yes
     state: started
     restart_policy: unless-stopped
     network_mode: host
     keep_volumes: no
     volumes:
-      - "/etc/srs.origin.conf:/usr/local/srs/conf/srs.conf:ro"
+      - "/etc/srs.origin.conf:/usr/local/srs/conf/docker.conf:ro"
 
 - name: srs prometheus exporter container
   become: yes

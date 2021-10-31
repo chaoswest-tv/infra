@@ -9,14 +9,14 @@
   become: yes
   docker_container:
     name: srs_edge
-    image: ossrs/srs:3
+    image: ossrs/srs:4
     pull: yes
     state: started
     restart_policy: unless-stopped
     network_mode: host
     keep_volumes: no
     volumes:
-      - "/etc/srs.edge.conf:/usr/local/srs/conf/srs.conf:ro"
+      - "/etc/srs.edge.conf:/usr/local/srs/conf/docker.conf:ro"
 
 - name: open rtmp playout firewall port
   become: yes

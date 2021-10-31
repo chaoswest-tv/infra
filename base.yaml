@@ -7,7 +7,6 @@
   roles:
     - no_snapd
     - ufw
-    - acme_cert
     - node_exporter
 
 - hosts: srs_origin

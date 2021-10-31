@@ -1,3 +1,0 @@
-acme_name: default
-acme_domains:
-  - "{{ inventory_hostname }}"
