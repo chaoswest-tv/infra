@@ -40,6 +40,13 @@
     proto: tcp
     port: "{{ srs_origin_rtmp_port }}"
 
+- name: open srt ingest firewall port
+  become: yes
+  ufw:
+    rule: allow
+    proto: udp
+    port: "{{ srs_origin_srt_port }}"
+
 - name: open srs api firewall port to srs origin cluster (v4)
   become: yes
   ufw:

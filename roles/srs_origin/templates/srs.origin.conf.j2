@@ -10,6 +10,11 @@ http_api {
     listen          {{ srs_origin_api_port }};
 }
 
+srt_server {
+    enabled         on;
+    listen          {{ srs_origin_srt_port }};
+}
+
 vhost __defaultVhost__ {
     security {
       enabled on;

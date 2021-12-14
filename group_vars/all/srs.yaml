@@ -1,5 +1,6 @@
 srs_edge_rtmp_port: 1936
 srs_origin_rtmp_port: 1935
+srs_origin_srt_port: 20000
 srs_origin_api_port: 9090
 srs_exporter_port: 9185
 
